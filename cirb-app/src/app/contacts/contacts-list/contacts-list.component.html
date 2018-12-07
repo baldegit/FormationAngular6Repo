@@ -1,6 +1,9 @@
 
 <div id="contacts">
-  <ul>
-    <app-contacts-list-item></app-contacts-list-item>
+  <ul *ngIf="contacts">
+    <app-contacts-list-item *ngFor="let person of contacts" [person]="person"></app-contacts-list-item>
   </ul>
 </div>
+
+<!-- *ng-if="contacts"
+*ngfor="let person of contacts" -->

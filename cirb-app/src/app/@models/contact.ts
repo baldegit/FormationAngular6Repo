@@ -1,8 +1,10 @@
+type contactStatus = 'onlive' | 'ofline' | 'busy' | 'away';
+
 export interface Contact {
   id?: number;
   firstname: string;
   lastname: string;
-  status: 'onlive' | 'ofline' | 'busy' | 'away';
+  status: contactStatus;
   mood: string;
   avatar: string;
 }

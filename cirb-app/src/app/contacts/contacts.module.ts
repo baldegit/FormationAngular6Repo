@@ -13,7 +13,6 @@ import { SharedModule } from '../shared/shared.module';
     ContactsHeaderComponent,
     ContactsSearchComponent, ContactsListComponent, ContactsSettingComponent, ContactsComponent, ContactsListItemComponent],
   imports: [
-    CommonModule,
     SharedModule
   ],
   exports: [ContactsComponent]

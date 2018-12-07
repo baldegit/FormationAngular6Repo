@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Contact } from '../../@models/contact';
 
 @Component({
   selector: 'app-contacts-list',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./contacts-list.component.css']
 })
 export class ContactsListComponent implements OnInit {
+
+  @Input() contacts: Set<Contact>;
 
   constructor() { }
 
