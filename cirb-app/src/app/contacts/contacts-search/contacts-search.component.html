@@ -1,4 +1,15 @@
 <div id="search">
-  <label for=""><i class="fa fa-search" aria-hidden="true"></i></label>
-  <input type="text" placeholder="Search contacts..." />
+  <label for=""><i class="fa fa-search" aria-hidden="true" *ngIf="!edit"></i></label>
+  <label for=""><i class="fa fa-trash-o" aria-hidden="true" (click)="onClearEdit()" *ngIf="edit"></i></label>
+  <input type="text" placeholder="Search contacts..."
+  [(ngModel)]="edit"
+  (ngModelChange)="onEditchCange($event)"/>
+
+  <br>
+
+  <div *ngIf="lastedit">
+      <span class="badge badge-secondary" (click)="onClearLastEdit()">X</span>
+      <span (click)="onSetLastEdit()">{{lastedit}}</span>
+  </div>
+
 </div>

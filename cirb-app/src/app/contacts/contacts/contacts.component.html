@@ -1,7 +1,9 @@
 
 <div id="sidepanel">
   <app-contacts-header></app-contacts-header>
-  <app-contacts-search></app-contacts-search>
-  <app-contacts-list [contacts]="contatList"></app-contacts-list>
+  <app-contacts-search (searchChange)="onGetMotCle($event)"></app-contacts-search>
+  <app-contacts-list [contacts]="contatList | contactSearche: searcheTerme"
+  (selectedContact)="onNewRecipient($event)">
+  </app-contacts-list>
   <app-contacts-setting></app-contacts-setting>
 </div>

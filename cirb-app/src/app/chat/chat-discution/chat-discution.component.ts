@@ -1,6 +1,8 @@
-import { Component, OnInit, ViewChild, ElementRef, Renderer2 } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Renderer2, Input } from '@angular/core';
 import { BaseFxDirective } from '../../base/base-fx.directive';
 import { BaseFxOverDirective } from '../../base/base-fx-over.directive';
+import { MessageManagerService } from '../../services/message-manager.service';
+import { Message } from '../../@models/message';
 
 @Component({
   selector: 'app-chat-discution',
@@ -9,23 +11,26 @@ import { BaseFxOverDirective } from '../../base/base-fx-over.directive';
 })
 export class ChatDiscutionComponent implements OnInit {
 
-  @ViewChild('elm') elm;
+/*   @ViewChild('elm') elm;
   @ViewChild('fx') fx;
   @ViewChild('comp') comp;
 
   @ViewChild(BaseFxDirective) bfx: BaseFxDirective;
-  @ViewChild(BaseFxOverDirective) bcomp: BaseFxOverDirective;
+  @ViewChild(BaseFxOverDirective) bcomp: BaseFxOverDirective; */
+
+  @Input() messages: Set<Message>;
 
   constructor(private me: ElementRef, private renderer: Renderer2) {
     this.loding();
   }
 
   ngOnInit() {
-    console.group(" ------------------------------- ");
+/*     console.group(" ------------------------------- ");
       console.log('Element HTML', this.elm);
       console.log('Directive', this.fx);
       console.log('Comonent', this.comp);
-    console.groupEnd();
+    console.groupEnd(); */
+    console.warn('=== => ', this.messages);
   }
 
   loding() {
@@ -35,3 +40,4 @@ export class ChatDiscutionComponent implements OnInit {
   }
 
 }
+

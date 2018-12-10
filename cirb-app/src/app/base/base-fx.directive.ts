@@ -1,4 +1,4 @@
-import { Directive, Input, HostBinding, OnInit, Attribute } from '@angular/core';
+import { Directive, Input, HostBinding, OnInit, Attribute, Optional } from '@angular/core';
 
 @Directive({
   selector: '[appBaseFx]',
@@ -9,12 +9,12 @@ export class BaseFxDirective implements OnInit {
   @Input() appBaseFx = {name: '', factor: 1};
 
   // toujour fair ca
-  @HostBinding('style.display') display = 'inline-block';
+  @HostBinding('style.display') display = 'block';//'inline-block';
   @HostBinding('style.transform') transform;
   @HostBinding('style.transition') transition = 'transform .5s ease';
   // @HostBinding('attr.delay') delay;
 
-  constructor(@Attribute ('delay') private delay: number) {
+  constructor(@Optional() @Attribute ('delay') private delay?: number) {
 
   }
 
@@ -24,6 +24,9 @@ export class BaseFxDirective implements OnInit {
   }
 
   public aply() {
+
+    if (!this.appBaseFx.name) { return; }
+
     switch (this.appBaseFx.name) {
       case 'zoom':
         this.transform = `scale(${this.appBaseFx.factor})`;
@@ -35,6 +38,8 @@ export class BaseFxDirective implements OnInit {
   }
 
   public revert() {
+    if (!this.appBaseFx.name) { return; }
+
     switch (this.appBaseFx.name) {
       case 'zoom':
         this.transform = `scale(1)`;

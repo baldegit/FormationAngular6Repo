@@ -1,7 +1,7 @@
 
 <div id="contacts">
   <ul *ngIf="contacts">
-    <app-contacts-list-item *ngFor="let person of contacts" [person]="person"></app-contacts-list-item>
+    <app-contacts-list-item *ngFor="let person of contacts" [person]="person" (click)="selectedContact.emit(person)"></app-contacts-list-item>
   </ul>
 </div>
 

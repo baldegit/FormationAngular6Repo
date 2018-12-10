@@ -14,7 +14,9 @@ import { ScreensModule } from './screens/screens.module';
     AppRoutingModule,
     ScreensModule
   ],
-  providers: [],
+  providers: [
+    {provide: 'ApplicationStorage', useValue: {msg: 'A demain !'}}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

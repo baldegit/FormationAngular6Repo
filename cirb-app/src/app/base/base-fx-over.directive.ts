@@ -26,11 +26,13 @@ export class BaseFxOverDirective extends BaseFxDirective implements OnInit {
     console.log('onkey');
   }
 
-  constructor() { super(); }
+  constructor() {
+    super();
+  }
 
   ngOnInit(): void {
     super.ngOnInit();
-    this.appBasefx = this.appBaseFxOver;
+    this.appBaseFx = this.appBaseFxOver;
   }
 
 }

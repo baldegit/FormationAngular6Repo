@@ -7,19 +7,23 @@ import { Contact } from '../../@models/contact';
   templateUrl: './contacts.component.html',
   styleUrls: ['./contacts.component.css']
 })
-export class ContactsComponent implements OnInit {
+export class ContactsComponent  {
 
   contatList: Set<Contact> = new Set();
+  searcheTerme = '';
 
   constructor(private contactService: ContactManagerService) {
     this.contatList = this.contactService.collection;
   }
 
-  onNewrecipient(recipient: Contact) {
+  onNewRecipient(recipient: Contact) {
     this.contactService.setRecipientUser(recipient);
+    console.log(recipient);
   }
 
-  ngOnInit() {
+  onGetMotCle(motCle: string) {
+    this.searcheTerme = motCle;
   }
+
 
 }

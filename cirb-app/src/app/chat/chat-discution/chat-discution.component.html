@@ -10,11 +10,13 @@
           [appBaseFxOver]>
         </app-chat-discution-message> -->
         <app-chat-discution-message
-        [appBaseFx]=" {name: 'zoom', factor: 1.2}"
+        [appBaseFxOver]=" {name: 'zoom', factor: 1.2}"
         delay="2"
-        #fx="Fx"
-        #comp
-        [appBaseFxOver]>
+        *ngFor="let message of messages"
+        [message]="message">
       </app-chat-discution-message>
     </ul>
   </div>
+  <!-- <ul *ngFor="let message of messages">
+    <li>c</li>
+  </ul> -->

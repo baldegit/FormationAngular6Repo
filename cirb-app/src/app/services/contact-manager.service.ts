@@ -1,14 +1,15 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter, Inject } from '@angular/core';
 import { Manager } from '../@models/manager';
 import { Contact } from '../@models/contact';
+import { Storage } from '../@models/storage';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ContactManagerService implements Manager<Contact>{
+export class ContactManagerService implements Manager<Contact> {
 
   currentUser: Contact;
-  recpientUser: Contact;
+  recpientUser = new EventEmitter;
 
   collection: Set<Contact> = new Set(
     [
@@ -36,12 +37,14 @@ export class ContactManagerService implements Manager<Contact>{
     ]
   );
 
-  setCurrentUser(user: Contact){
+  constructor(@Inject('ApplicationStorage') appStore: Storage<Contact>) { }
+
+  setCurrentUser(user: Contact) {
     this.currentUser = user;
   }
 
-  setRecipientUser(user: Contact){
-    this.recpientUser = user;
+  setRecipientUser(user: Contact) {
+    this.recpientUser.emit(user);
   }
 
   create(value: Contact): Promise<Contact> {
@@ -57,5 +60,5 @@ export class ContactManagerService implements Manager<Contact>{
     throw new Error("Method not implemented.");
   }
 
-  constructor() { }
+
 }
