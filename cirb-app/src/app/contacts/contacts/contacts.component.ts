@@ -9,11 +9,13 @@ import { Contact } from '../../@models/contact';
 })
 export class ContactsComponent  {
 
-  contatList: Set<Contact> = new Set();
   searcheTerme = '';
 
+  get contatList(): Set<Contact> {
+    return this.contactService.collection;
+  }
+
   constructor(private contactService: ContactManagerService) {
-    this.contatList = this.contactService.collection;
   }
 
   onNewRecipient(recipient: Contact) {

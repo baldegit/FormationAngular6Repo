@@ -2,6 +2,8 @@ import { Injectable, EventEmitter, Inject } from '@angular/core';
 import { Manager } from '../@models/manager';
 import { Contact } from '../@models/contact';
 import { Storage } from '../@models/storage';
+import { ContactStorage } from './applications';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -11,33 +13,11 @@ export class ContactManagerService implements Manager<Contact> {
   currentUser: Contact;
   recpientUser = new EventEmitter;
 
-  collection: Set<Contact> = new Set(
-    [
-      {
-        firstname: 'BALDE',
-        lastname: 'Ibrahima',
-        avatar: '',
-        status: null,
-        mood: ''
-      },
-      {
-        firstname: 'DIALLO',
-        lastname: 'Binta',
-        avatar: '',
-        status: null,
-        mood: ''
-      },
-      {
-        firstname: 'CAMARA',
-        lastname: 'Alpha',
-        avatar: '',
-        status: null,
-        mood: ''
-      }
-    ]
-  );
+  collection: Set<Contact> = new Set(  );
 
-  constructor(@Inject('ApplicationStorage') appStore: Storage<Contact>) { }
+  constructor(@Inject(ContactStorage) private appStore: Storage<Contact>) {
+    this.read().subscribe();
+  }
 
   setCurrentUser(user: Contact) {
     this.currentUser = user;
@@ -47,18 +27,22 @@ export class ContactManagerService implements Manager<Contact> {
     this.recpientUser.emit(user);
   }
 
-  create(value: Contact): Promise<Contact> {
-    throw new Error("Method not implemented.");
-  }
-  read(id: number): Promise<Contact> {
-    throw new Error("Method not implemented.");
-  }
-  update(target: Contact, updates: any): Promise<Contact> | Promise<Error> {
-    throw new Error("Method not implemented.");
-  }
-  delete(target: Contact): Promise<boolean> {
+  create(value: Contact): Observable<Contact> {
     throw new Error("Method not implemented.");
   }
 
+  read(id?: number): Observable<Contact[]>{
+    return new Observable(obs => {
+      this.appStore.read().subscribe(data => {
+        this.collection = new Set(data);
+      });
+    }) ;
+  }
+  update(target: Contact, updates: any): Observable<Contact> {
+    throw new Error("Method not implemented.");
+  }
+  delete(target: Contact): Observable<boolean> {
+    throw new Error("Method not implemented.");
+  }
 
 }
